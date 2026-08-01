@@ -1,0 +1,7 @@
+repos:
+  - name: "Repo 1"
+    id: 1
+    repoLocation: "local/path/to/repo1"
+  - name: "Repo 2"
+    id: 2
+    repoLocation: "local/path/to/repo2"
