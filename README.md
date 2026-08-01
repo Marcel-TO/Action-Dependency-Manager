@@ -130,7 +130,7 @@ go run main.go update --select="1" --debug
 ### Example output
 
 ```
-azure-fa-jaw-mobilfunk.yml
+ci-cd-action.yml
 --------------------------
     ↑ update available  actions/checkout  9c091bb -> 3d3c42e (v7.0.1)
     ↑ update available  oven-sh/setup-bun  v2 -> 0c5077e (v2.2.0)
