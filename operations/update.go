@@ -58,6 +58,12 @@ func RunUpdate(log *logger.Logger, args config.UpdateArgumentConfig, cfg *config
 			return err
 		}
 
+		// Skip repositories without any workflow files.
+		if len(repoDeps.Workflows) == 0 {
+			log.Warning("No workflow files found for repository: " + repo.Name + " - skipping")
+			continue
+		}
+
 		changed, err := updateDependencies(log, repoDeps)
 		if err != nil {
 			log.Error("Failed to update dependencies for repository: " + repo.Name + " - " + err.Error())

@@ -58,6 +58,12 @@ func RunCheck(log *logger.Logger, args config.CheckArgumentConfig, cfg *config.C
 			return err
 		}
 
+		// Skip repositories without any workflow files.
+		if len(repoDeps.Workflows) == 0 {
+			log.Warning("No workflow files found for repository: " + repo.Name + " - skipping")
+			continue
+		}
+
 		checkRepository(log, repoDeps)
 	}
 
