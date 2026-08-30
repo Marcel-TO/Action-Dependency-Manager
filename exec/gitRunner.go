@@ -20,7 +20,7 @@ func CommitToGitHandler(log *logger.Logger, repoPath string, changed []config.Ch
 
 	// `git status --porcelain` prints one line per change and nothing at all
 	// when the tree is clean, so an empty result means there is nothing to commit.
-	status, err := Output(repoPath, "git", "status", "--porcelain")
+	status, err := Output(repoPath, "git", "status", ".github/workflows", "--porcelain")
 	if err != nil {
 		return fmt.Errorf("failed to check repository status: %w", err)
 	}
