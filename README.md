@@ -1,12 +1,12 @@
 # Action Dependency Manager (ADM)
 
-A small command-line tool that helps you keep the GitHub Action dependencies in
-your workflow files up to date — across many local repositories at once.
+A small command-line tool that keeps the GitHub Action dependencies in your
+workflow files up to date across many local repositories at once.
 
 ADM scans the `.github/workflows` directory of each configured repository,
-discovers every `uses:` reference, resolves the latest release of each action
-and can either **report** what is outdated (`check`) or **pin** every action to
-the latest release commit (`update`).
+discovers every `uses:` reference, resolves the latest release of each action,
+then either reports what is outdated (`check`) or pins every action to the
+latest release commit (`update`).
 
 ## Why?
 
@@ -19,19 +19,19 @@ tedious. ADM automates this by rewriting references to the following form:
 uses: actions/checkout@3d3c42e... # v7.0.1
 ```
 
-The commit SHA is used as the actual pin, while the human-readable release tag
-is kept as a trailing comment.
+The commit SHA is the actual pin, and the human-readable release tag stays as a
+trailing comment.
 
 ## Features
 
-- 🔍 Discovers all workflow files under `.github/workflows` in each repository.
-- 🧩 Parses every `uses:` reference and extracts the dependency and its version.
-- 🌐 Resolves the latest release tag and its commit SHA via the `gh` CLI.
-- ✅ `check` — read-only report of which dependencies are outdated, grouped per
-  workflow file.
-- ⬆️ `update` — pins every dependency to its latest release commit SHA with the
-  tag preserved as a comment.
-- 📁 Works across multiple repositories from a single config file, with an
+- Discovers all workflow files under `.github/workflows` in each repository.
+- Parses every `uses:` reference and extracts the dependency and its version.
+- Resolves the latest release tag and its commit SHA via the `gh` CLI.
+- `check` gives a read-only report of which dependencies are outdated, grouped
+  per workflow file.
+- `update` pins every dependency to its latest release commit SHA and keeps the
+  tag as a comment.
+- Works across multiple repositories from a single config file, with an
   optional `--select` filter.
 
 ## Prerequisites
@@ -40,11 +40,11 @@ ADM relies on the [GitHub CLI](https://cli.github.com/) to look up release tags
 and their corresponding commit SHAs.
 
 - [Go](https://go.dev/dl/) 1.26+ (to build/run from source)
-- [`gh` CLI](https://cli.github.com/) — installed and authenticated
+- [`gh` CLI](https://cli.github.com/), installed and authenticated
   (`gh auth login`)
 - A GitHub account with access to the actions you depend on
 
-Behind the scenes ADM runs commands equivalent to:
+ADM runs commands equivalent to:
 
 ```bash
 # Fetch the latest release tag of a dependency
@@ -100,7 +100,7 @@ go build -o adm .
 
 | Command  | Description                                                              |
 | -------- | ----------------------------------------------------------------------- |
-| `check`  | Reports which dependencies have a newer version. Does **not** modify files. |
+| `check`  | Reports which dependencies have a newer version. Leaves files untouched. |
 | `update` | Pins every dependency to its latest release commit SHA in the workflow files. |
 
 ### Flags
